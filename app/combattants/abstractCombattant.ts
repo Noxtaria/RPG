@@ -1,6 +1,4 @@
-import  * as read  from "readline-sync";
-
-export class Personnage {
+export abstract class AbstractCombattant {
 
     private _pointDeVie: number;
     private _degats: number; 
