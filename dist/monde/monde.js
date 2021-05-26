@@ -26,6 +26,17 @@ var Monde = /** @class */ (function () {
         var nom = readline_sync_1.default.question("Saisir le nom du Monstre ! : ");
         return new monstre_1.Monstre(75, 4, nom);
     };
+    /**
+     * Génerer un nom de Monstre Aléatoire
+     */
+    Monde.genererNom = function () {
+        var debutNom = ["chat", "chien", "dragon", "fee"];
+        var finNom = [" méchant", " de feu", " de la mort"];
+        var nomMonstre = debutNom[Math.round(Math.random() * debutNom.length - 1)] +
+            finNom[Math.round(Math.random() * finNom.length - 1)];
+        return nomMonstre;
+        console.log(nomMonstre);
+    };
     return Monde;
 }());
 exports.Monde = Monde;

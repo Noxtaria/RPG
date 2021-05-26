@@ -22,12 +22,28 @@ export class Monde {
 * @returns - un monstre
 **/
 
-static monstreFactory = () : Monstre => {
+    static monstreFactory = () : Monstre => {
 
-    let nom = read.question("Saisir le nom du Monstre ! : ");
+        let nom = read.question("Saisir le nom du Monstre ! : ");
 
-    return new Monstre(75, 4, nom); 
+        return new Monstre(75, 4, Monde.genererNom()); 
 
-}
+    }
+
+/**
+ * Génerer un nom de Monstre Aléatoire
+ */
+
+    static genererNom = () : string => {
+
+        let debutNom : string[] = ["chat", "chien", "dragon", "fee"]
+        let finNom : string[]= [" méchant", " de feu", " de la mort"]
+
+        let nomMonstre = debutNom[Math.round(Math.random() * (debutNom.length-1))] +
+                           finNom[Math.round(Math.random() * (finNom.length-1))];
+
+        return nomMonstre;
+    }
+    
 
 }
