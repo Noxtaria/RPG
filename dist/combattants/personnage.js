@@ -19,8 +19,8 @@ exports.Personnage = void 0;
 var abstractCombattant_1 = require("./abstractCombattant");
 var Personnage = /** @class */ (function (_super) {
     __extends(Personnage, _super);
-    function Personnage() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Personnage(pointDeVie, degats, nom) {
+        return _super.call(this, pointDeVie, degats, nom) || this;
     }
     return Personnage;
 }(abstractCombattant_1.AbstractCombattant));

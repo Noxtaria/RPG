@@ -1,4 +1,6 @@
-export abstract class AbstractCombattant {
+import { Combattant } from "./combattant";
+
+export abstract class AbstractCombattant implements Combattant {
 
     private _pointDeVie: number;
     private _degats: number; 
@@ -10,6 +12,14 @@ export abstract class AbstractCombattant {
         this._pointDeVie = pointDeVie;
         this._degats = degats;
         this._nom = nom;
+
+    }
+    attaquer(adversaire: Combattant): void {
+        
+    }
+    defendre(degats: number): void {
+        
+
 
     }
 

@@ -41,15 +41,27 @@ var Monde = /** @class */ (function () {
      */
     Monde.combat = function (personnage, monstre) {
         var tour = 1;
-        if (tour % 2) {
-            console.log(personnage.nom + " attaque " + monstre.nom + " et inflige " + personnage.degats + " point de degat");
-            monstre.pointDeVie -= personnage.degats;
-            console.log("Il reste \u00E0 " + monstre.nom + " " + monstre.pointDeVie + " pdv");
+        while (personnage.pointDeVie >= 0 && monstre.pointDeVie >= 0) {
+            if (tour % 2) {
+                console.log(personnage.nom + " attaque " + monstre.nom + " et inflige " + personnage.degats + " point de degat");
+                monstre.pointDeVie -= personnage.degats;
+                console.log("Il reste \u00E0 " + monstre.nom + " " + monstre.pointDeVie + " pdv");
+            }
+            else {
+                console.log(monstre.nom + " attaque " + personnage.nom + " et inflige " + monstre.degats + " point de degat");
+                personnage.pointDeVie -= monstre.degats;
+                console.log("Il reste \u00E0 " + personnage.nom + " " + personnage.pointDeVie + " pdv");
+            }
+            tour++;
+        }
+        Monde.afficherVainqueur(personnage, monstre);
+    };
+    Monde.afficherVainqueur = function (personnage, monstre) {
+        if (personnage.pointDeVie > 0) {
+            console.log("Vous avez gagné");
         }
         else {
-            console.log(monstre.nom + " attaque " + personnage.nom + " et inflige " + monstre.degats + " point de degat");
-            personnage.pointDeVie -= monstre.degats;
-            console.log("Il reste \u00E0 " + personnage.nom + " " + personnage.pointDeVie + " pdv");
+            console.log("Vous êtes mort");
         }
     };
     return Monde;
