@@ -23,19 +23,34 @@ var Monde = /** @class */ (function () {
     * @returns - un monstre
     **/
     Monde.monstreFactory = function () {
-        var nom = readline_sync_1.default.question("Saisir le nom du Monstre ! : ");
-        return new monstre_1.Monstre(75, 4, nom);
+        return new monstre_1.Monstre(75, 4, Monde.genererNom());
     };
     /**
      * Génerer un nom de Monstre Aléatoire
+     * @returns - nom du nomstre
      */
     Monde.genererNom = function () {
         var debutNom = ["chat", "chien", "dragon", "fee"];
         var finNom = [" méchant", " de feu", " de la mort"];
-        var nomMonstre = debutNom[Math.round(Math.random() * debutNom.length - 1)] +
-            finNom[Math.round(Math.random() * finNom.length - 1)];
+        var nomMonstre = debutNom[Math.round(Math.random() * (debutNom.length - 1))] +
+            finNom[Math.round(Math.random() * (finNom.length - 1))];
         return nomMonstre;
-        console.log(nomMonstre);
+    };
+    /**
+     * Génerer un Combat
+     */
+    Monde.combat = function (personnage, monstre) {
+        var tour = 1;
+        if (tour % 2) {
+            console.log(personnage.nom + " attaque " + monstre.nom + " et inflige " + personnage.degats + " point de degat");
+            monstre.pointDeVie -= personnage.degats;
+            console.log("Il reste \u00E0 " + monstre.nom + " " + monstre.pointDeVie + " pdv");
+        }
+        else {
+            console.log(monstre.nom + " attaque " + personnage.nom + " et inflige " + monstre.degats + " point de degat");
+            personnage.pointDeVie -= monstre.degats;
+            console.log("Il reste \u00E0 " + personnage.nom + " " + personnage.pointDeVie + " pdv");
+        }
     };
     return Monde;
 }());

@@ -4,11 +4,12 @@ import { Monstre } from "./combattants/monstre";
 
 
 let personnage1 : Personnage = Monde.personnageFactory();
-let monstre1 : Monstre = Monde.monstreFactory();
-let nomMonstre : String = Monde.genererNom();
+let monstre : Monstre = Monde.monstreFactory();
 
-    console.log(personnage1);
-    console.log(monstre1);
-    console.log(nomMonstre)
+Monde.combat(personnage1, monstre )
+
+
+
+
 
     

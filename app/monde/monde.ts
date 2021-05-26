@@ -1,4 +1,5 @@
 import  read  from "readline-sync";
+import { AbstractCombattant } from "../combattants/abstractCombattant";
 import { Monstre } from "../combattants/monstre";
 import { Personnage } from "../combattants/personnage";
 
@@ -24,14 +25,13 @@ export class Monde {
 
     static monstreFactory = () : Monstre => {
 
-        let nom = read.question("Saisir le nom du Monstre ! : ");
-
         return new Monstre(75, 4, Monde.genererNom()); 
 
     }
 
 /**
  * Génerer un nom de Monstre Aléatoire
+ * @returns - nom du nomstre
  */
 
     static genererNom = () : string => {
@@ -44,6 +44,24 @@ export class Monde {
 
         return nomMonstre;
     }
-    
 
-}
+/**
+ * Génerer un Combat
+ */
+    
+    static combat = (personnage : Personnage, monstre : Monstre) : void => {
+
+
+            let tour = 1;
+            if(tour % 2){
+
+                console.log(`${personnage.nom} attaque ${monstre.nom} et inflige ${personnage.degats} point de degat`); monstre.pointDeVie -= personnage.degats;
+                console.log(`Il reste à ${monstre.nom} ${monstre.pointDeVie} pdv`);
+
+            } else {
+
+                console.log(`${monstre.nom} attaque ${personnage.nom} et inflige ${monstre.degats} point de degat`); personnage.pointDeVie -= monstre.degats;
+                console.log(`Il reste à ${personnage.nom} ${personnage.pointDeVie} pdv`);
+            }
+        }
+    }
