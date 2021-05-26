@@ -1,4 +1,5 @@
 import { Combattant } from "./combattant";
+import { Personnage } from "./personnage";
 
 export abstract class AbstractCombattant implements Combattant {
 
@@ -15,11 +16,17 @@ export abstract class AbstractCombattant implements Combattant {
 
     }
     attaquer(adversaire: Combattant): void {
+      
+        console.log(`${this.nom} attaque ${adversaire.nom} et inflige ${this.degats}`)
+        adversaire.defendre(this.degats);
+        console.log(`Il reste à ${adversaire.nom} ${adversaire.pointDeVie} pdv.`)
         
     }
-    defendre(degats: number): void {
-        
 
+
+    defendre(degats: number): void {
+
+        this.pointDeVie -= degats;
 
     }
 
