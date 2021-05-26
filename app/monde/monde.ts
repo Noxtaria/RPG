@@ -1,5 +1,6 @@
 import read from "readline-sync";
 import { AbstractCombattant } from "../combattants/abstractCombattant";
+import { Combattant } from "../combattants/combattant";
 import { Monstre } from "../combattants/monstre";
 import { Personnage } from "../combattants/personnage";
 
@@ -49,30 +50,27 @@ export class Monde {
      * Génerer un Combat
      */
 
-    static combat = (personnage: Personnage, monstre: Monstre): void => {
+    static combat = (combattant1 : Combattant, combattant2 : Combattant): void => {
 
         let tour = 1;
-        while (personnage.pointDeVie >= 0 && monstre.pointDeVie >=0) {
+        while (combattant1.pointDeVie >= 0 && combattant2.pointDeVie >=0) {
             if (tour % 2) {
 
-                console.log(`${personnage.nom} attaque ${monstre.nom} et inflige ${personnage.degats} point de degat`);
-                monstre.pointDeVie -= personnage.degats;
-                console.log(`Il reste à ${monstre.nom} ${monstre.pointDeVie} pdv`);
+                combattant1.attaquer(combattant2);
 
             } else {
 
-                console.log(`${monstre.nom} attaque ${personnage.nom} et inflige ${monstre.degats} point de degat`); 
-                personnage.pointDeVie -= monstre.degats;
-                console.log(`Il reste à ${personnage.nom} ${personnage.pointDeVie} pdv`);
+                combattant2.attaquer(combattant1);
+                
             }
             tour++;
         }
-        Monde.afficherVainqueur(personnage, monstre)
+        Monde.afficherVainqueur(combattant1, combattant2);
     }
     
-    static afficherVainqueur = (personnage : Personnage, monstre: Monstre) => {
+    static afficherVainqueur = (combattant1 : Combattant, combattant2: Combattant) => {
 
-        if(personnage.pointDeVie > 0){
+        if(combattant1.pointDeVie > 0){
             console.log("Vous avez gagné")
         } else {
             console.log("Vous êtes mort")

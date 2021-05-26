@@ -43,13 +43,13 @@ var Monde = /** @class */ (function () {
         var tour = 1;
         while (personnage.pointDeVie >= 0 && monstre.pointDeVie >= 0) {
             if (tour % 2) {
+                personnage.attaquer;
                 console.log(personnage.nom + " attaque " + monstre.nom + " et inflige " + personnage.degats + " point de degat");
-                monstre.pointDeVie -= personnage.degats;
                 console.log("Il reste \u00E0 " + monstre.nom + " " + monstre.pointDeVie + " pdv");
             }
             else {
+                monstre.defendre;
                 console.log(monstre.nom + " attaque " + personnage.nom + " et inflige " + monstre.degats + " point de degat");
-                personnage.pointDeVie -= monstre.degats;
                 console.log("Il reste \u00E0 " + personnage.nom + " " + personnage.pointDeVie + " pdv");
             }
             tour++;

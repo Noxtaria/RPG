@@ -7,6 +7,14 @@ var AbstractCombattant = /** @class */ (function () {
         this._degats = degats;
         this._nom = nom;
     }
+    AbstractCombattant.prototype.attaquer = function (adversaire) {
+        console.log(this.nom + " attaque " + adversaire.nom + " et inflige " + this.degats);
+        adversaire.defendre(this.degats);
+        console.log("Il reste \u00E0 " + adversaire.nom + " " + adversaire.pointDeVie + " pdv.");
+    };
+    AbstractCombattant.prototype.defendre = function (degats) {
+        this.pointDeVie -= degats;
+    };
     Object.defineProperty(AbstractCombattant.prototype, "pointDeVie", {
         get: function () {
             return this._pointDeVie;
