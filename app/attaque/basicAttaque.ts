@@ -2,12 +2,12 @@ import { Attaque } from "./attaque";
 
 export class BasicAttaque implements Attaque {
 
-   private _nom: string;
-   private _degats: number;
-   private _chanceToucher: number;
-    
-    
-    public constructor(nom: string, degats: number, chanceToucher: number){
+    private _nom: string;
+    private _degats: number;
+    private _chanceToucher: number;
+
+
+    public constructor(nom: string, degats: number, chanceToucher: number) {
 
         this._nom = nom;
         this._degats = degats;
@@ -16,7 +16,21 @@ export class BasicAttaque implements Attaque {
     }
 
     lancerAttaque(): number {
-        throw new Error("Method not implemented.");
+        let returnDegats: number = 0;
+
+        let rand: number = Math.random() * 100;
+
+        if (this._chanceToucher >= rand){
+
+            returnDegats = this.degats;
+
+        } else {
+
+            console.log(`echec de l'attaque`);
+
+        }
+
+        return returnDegats;
     }
 
     public get nom(): string {
@@ -36,8 +50,15 @@ export class BasicAttaque implements Attaque {
     public get chanceToucher(): number {
         return this._chanceToucher;
     }
-    public set chanceToucher(value: number) {
-        this._chanceToucher = value;
+    public set chancesToucher(value: number) {       
+        if (value >= 0 && value <= 100) {
+
+            this._chanceToucher = value;
+
+        } else {
+
+            this._chanceToucher = 0;
+        }
     }
 
 }
