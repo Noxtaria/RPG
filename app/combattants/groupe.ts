@@ -3,9 +3,9 @@ import { Combattant } from "./combattant";
 export class Groupe {
 
     private _combattants: Combattant[];
-   
 
-    constructor(combattants : Combattant[]) {
+
+    constructor(combattants: Combattant[]) {
 
         this._combattants = combattants;
 
@@ -15,7 +15,7 @@ export class Groupe {
      *  Cette méthode ajoute un combattant à la liste des combattants 
      */
 
-     addCombattant = (combattant : Combattant): void => {
+    addCombattant = (combattant: Combattant): void => {
 
         this._combattants.push(combattant);
 
@@ -24,21 +24,36 @@ export class Groupe {
      * Cette méthode vérifie que tous les combattants du groupe sont morts
      * @returns true si tous les combattants sont morts
      */
-    estMort = () : boolean => {
+    estMort = (): boolean => {
 
         // Parcourir les listes des combattants
         // Si un des combattant est vivant, retourner false
         // Sinon retourner true si ils sont tous mort
 
-        let result : boolean = true;
+        let result: boolean = true;
 
-        for(let i : number = 0; i < this._combattants.length; i++){
-            if(this._combattants[i].pointDeVie > 0){
+        for (let i: number = 0; i < this._combattants.length; i++) {
+            if (this._combattants[i].pointDeVie > 0) {
                 result = false;
                 break;
             }
         }
         return result;
+    }
+
+    /**
+     * Cette méthode récupère les vivants du groupe
+     * @returns Liste de combattants vivants
+     */
+    getCombattantsVivants = (): Combattant[] => {
+
+        let combattantsVivants: Combattant[] = [];
+
+        this._combattants.filter(combattant => {
+            combattant.pointDeVie > 0
+        })
+
+        return combattantsVivants;
     }
 
     public get combattants(): Combattant[] {
@@ -47,5 +62,5 @@ export class Groupe {
     public set combattants(value: Combattant[]) {
         this._combattants = value;
     }
- 
+
 }
