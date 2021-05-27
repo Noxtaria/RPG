@@ -1,4 +1,7 @@
 import read from "readline-sync";
+import { Attaque } from "../attaque/attaque";
+import { BasicAttaque } from "../attaque/basicAttaque";
+import { Classe } from "../classes/classe";
 import { AbstractCombattant } from "../combattants/abstractCombattant";
 import { Combattant } from "../combattants/combattant";
 import { Monstre } from "../combattants/monstre";
@@ -14,8 +17,13 @@ export class Monde {
     static personnageFactory = (): Personnage => {
 
         let nom = read.question("Saisir le nom du Heros ! : ");
+        let nomClassList : string[] = [] ;
+        Monde.classList.forEach(classe =>{
+            nomClassList.push(classe.nom);
+        });
+        let classe = read.keyInSelect(nomClassList)
 
-        return new Personnage(150, 10, nom);
+        return new Personnage(150, 10, nom, Monde.classList[classe]);
 
     }
 
@@ -30,6 +38,29 @@ export class Monde {
 
     }
 
+    /**
+     * Cette méthode créer et retourne une liste d'attaque
+     */
+    static attaqueListFactory = () : Attaque[] => {
+
+
+    let attaque1 : Attaque = new BasicAttaque("Attaque légère", 10, 90);
+    let attaque2 : Attaque = new BasicAttaque("Attaque légère", 15, 80);
+    let attaque3 : Attaque = new BasicAttaque("Attaque légère", 30, 40);
+    return [attaque1, attaque2, attaque3];
+
+    }
+
+    static classeListFactory = () : Classe[] => {
+
+    let classe1 : Classe = new Classe("Paladin", Monde.attaqueListFactory());
+    let classe2 : Classe = new Classe("Archer", Monde.attaqueListFactory());
+    let classe3 : Classe = new Classe("Mage", Monde.attaqueListFactory());
+    return [classe1, classe2, classe3];
+
+    }
+    private static classList : Classe[] = Monde.classeListFactory();
+ 
     /**
      * Génerer un nom de Monstre Aléatoire
      * @returns - nom du nomstre

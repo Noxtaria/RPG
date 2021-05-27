@@ -19,9 +19,21 @@ exports.Personnage = void 0;
 var abstractCombattant_1 = require("./abstractCombattant");
 var Personnage = /** @class */ (function (_super) {
     __extends(Personnage, _super);
-    function Personnage(pointDeVie, degats, nom) {
-        return _super.call(this, pointDeVie, degats, nom) || this;
+    function Personnage(pointDeVie, degats, nom, classe) {
+        var _this = _super.call(this, pointDeVie, degats, nom) || this;
+        _this._classe = classe;
+        return _this;
     }
+    Object.defineProperty(Personnage.prototype, "classe", {
+        get: function () {
+            return this._classe;
+        },
+        set: function (value) {
+            this._classe = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Personnage;
 }(abstractCombattant_1.AbstractCombattant));
 exports.Personnage = Personnage;
