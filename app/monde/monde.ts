@@ -21,6 +21,7 @@ export class Monde {
         Monde.classList.forEach(classe =>{
             nomClassList.push(classe.nom);
         });
+        console.log("Choisir une classe : ")
         let classe = read.keyInSelect(nomClassList)
 
         return new Personnage(150, 10, nom, Monde.classList[classe]);
