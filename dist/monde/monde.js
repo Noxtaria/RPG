@@ -22,6 +22,7 @@ var Monde = /** @class */ (function () {
         Monde.classList.forEach(function (classe) {
             nomClassList.push(classe.nom);
         });
+        console.log("Choisir une classe : ");
         var classe = readline_sync_1.default.keyInSelect(nomClassList);
         return new personnage_1.Personnage(150, 10, nom, Monde.classList[classe]);
     };
@@ -65,6 +66,7 @@ var Monde = /** @class */ (function () {
     Monde.combat = function (combattant1, combattant2) {
         var tour = 1;
         while (combattant1.pointDeVie >= 0 && combattant2.pointDeVie >= 0) {
+            readline_sync_1.default.question('');
             if (tour % 2) {
                 combattant1.attaquer(combattant2);
             }

@@ -17,6 +17,7 @@ export class Monde {
     static personnageFactory = (): Personnage => {
 
         let nom = read.question("Saisir le nom du Heros ! : ");
+        let pdv : number = +read.question("Saisir vos Point de Vie ! : ");
         let nomClassList : string[] = [] ;
         Monde.classList.forEach(classe =>{
             nomClassList.push(classe.nom);
@@ -24,7 +25,7 @@ export class Monde {
         console.log("Choisir une classe : ")
         let classe = read.keyInSelect(nomClassList)
 
-        return new Personnage(150, 10, nom, Monde.classList[classe]);
+        return new Personnage(pdv, 50, nom, Monde.classList[classe]);
 
     }
 
@@ -86,6 +87,7 @@ export class Monde {
 
         let tour = 1;
         while (combattant1.pointDeVie >= 0 && combattant2.pointDeVie >=0) {
+            read.question('');
             if (tour % 2) {
 
                 combattant1.attaquer(combattant2);
